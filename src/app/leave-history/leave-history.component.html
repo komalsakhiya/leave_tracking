@@ -11,7 +11,7 @@
     <p>Monthly Leave</p>
     <form [formGroup]='monthLeaveForm'>
       <ion-item>
-        <ion-label style="color: gray">Select Date</ion-label>
+        <ion-label style="color: gray">Select Month</ion-label>
         <ion-datetime displayFormat="MMMM YYYY" formControlName="month"
           (ionChange)=getMounthlyLeaveByUser(monthLeaveForm.value)>
         </ion-datetime>
@@ -35,7 +35,7 @@
     <span>Yearly Leave</span>
     <form [formGroup]='yearLeaveForm'>
       <ion-item>
-        <ion-label style="color: gray">Select Date</ion-label>
+        <ion-label style="color: gray">Select Year</ion-label>
         <ion-datetime displayFormat=" YYYY" formControlName="year"
           (ionChange)=getYearlyLeaveByUser(yearLeaveForm.value)>
         </ion-datetime>

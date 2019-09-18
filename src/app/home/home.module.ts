@@ -11,6 +11,7 @@ import { LeaveHistoryComponent } from '../leave-history/leave-history.component'
 import { DashboardComponent } from '../Admin/dashboard/dashboard.component';
 import { AllUserComponent } from '../Admin/all-user/all-user.component';
 import { SingleUsreComponent } from '../Admin/single-usre/single-usre.component';
+import { ReportsComponent } from '../Admin/reports/reports.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -51,6 +52,10 @@ import { SingleUsreComponent } from '../Admin/single-usre/single-usre.component'
             path: 'single-user/:userId',
             component: SingleUsreComponent
           },
+          {
+            path: 'report',
+            component: ReportsComponent
+          },
         ]
       }
     ])
@@ -62,7 +67,8 @@ import { SingleUsreComponent } from '../Admin/single-usre/single-usre.component'
     LeaveHistoryComponent,
     DashboardComponent,
     AllUserComponent,
-    SingleUsreComponent
+    SingleUsreComponent,
+    ReportsComponent
   ],
 })
 export class HomePageModule { }

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Platform,MenuController } from '@ionic/angular';
+import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
-import { Router, Event, NavigationStart,RouterEvent } from '@angular/router';
+import { Router, Event, NavigationStart, RouterEvent } from '@angular/router';
 import { UserService } from '../services/user.service';
 
 
@@ -32,6 +32,10 @@ export class HomePage {
     {
       title: 'Dashboard',
       url: '/home/dashboard'
+    },
+    {
+      title: 'Report',
+      url: '/home/report'
     }
   ];
 
@@ -45,7 +49,7 @@ export class HomePage {
       if (event && event.url) {
         this.selectedPath = event.url;
       }
-    }); 
+    });
   }
 
   /**
@@ -63,12 +67,12 @@ export class HomePage {
     this.menu.open('first');
   }
 
-//   openEnd() {
-//     this.menu.open('end');
-//   }
+  //   openEnd() {
+  //     this.menu.open('end');
+  //   }
 
-//   openCustom() {
-//     this.menu.enable(true, 'custom');
-//     this.menu.open('custom');
-//   }
+  //   openCustom() {
+  //     this.menu.enable(true, 'custom');
+  //     this.menu.open('custom');
+  //   }
 }

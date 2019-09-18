@@ -1,3 +1,62 @@
-<p>
-  reports works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Report</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div>
+    <p>Monthly Leave</p>
+    <form [formGroup]='monthLeaveForm'>
+      <ion-item>
+        <ion-label style="color: gray">Select Month</ion-label>
+        <ion-datetime displayFormat="MMMM YYYY" formControlName="month"
+          (ionChange)=getMonthLeaveReport(monthLeaveForm.value)>
+        </ion-datetime>
+      </ion-item>
+    </form>
+    <div *ngIf="monthLeaveReport.length">
+      <div class="row header">
+        <div class="col">Date</div>
+        <div class="col">Name</div>
+        <div class="col">Status</div>
+      </div>
+      <div class="row" *ngFor="let leave of monthLeaveReport">
+        <div class="col text-center">{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</div>
+        <div class="col text-center">{{leave.userId.name}}</div>
+        <div class="col">{{leave.status}}</div>
+      </div>
+    </div>
+    <div *ngIf="monthLeaveCount == 0">
+      <p class="text-center">There are No leaves</p>
+    </div>
+  </div>
+  <div>
+    <span>Yearly Leave</span>
+    <form [formGroup]='yearLeaveForm'>
+      <ion-item>
+        <ion-label style="color: gray">Select Year</ion-label>
+        <ion-datetime displayFormat=" YYYY" formControlName="year"
+          (ionChange)=getYearLeaveReport(yearLeaveForm.value)>
+        </ion-datetime>
+      </ion-item>
+    </form>
+    <div *ngIf="yearLeaveReport.length">
+      <div class="row header">
+        <div class="col">Date</div>
+        <div class="col">Name</div>
+        <div class="col">Status</div>
+      </div>
+      <div class="row" *ngFor="let leave of yearLeaveReport">
+        <div class="col text-center">{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</div>
+        <div class="col text-center">{{leave.userId.name}}</div>
+        <div class="col">{{leave.status}}</div>
+      </div>
+    </div>
+    <div *ngIf="yearLeaveCount == 0">
+      <p class="text-center">There are No leaves</p>
+    </div>
+  </div>
+</ion-content>
