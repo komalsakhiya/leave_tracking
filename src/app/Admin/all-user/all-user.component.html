@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>All Users</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col size='6' align-self-center *ngFor="let user of allUser">
+      <div routerLink="/home/single-user/{{user._id}}" style="cursor: pointer">
+        <div class="profile_img" *ngIf="!user.profilePhoto">
+          <ion-img src="../../assets/images/profile.jpg"></ion-img>
+        </div>
+        <div class="profile_img" *ngIf="user.profilePhoto">
+          <ion-img src="{{path}}{{user.profilePhoto}}"></ion-img>
+        </div>
+        <ion-text class="text-center">{{user.name}}</ion-text>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>

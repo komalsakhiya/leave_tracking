@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div>
+    <ion-row>
+      <ion-col size="2">
+        <ion-avatar class="profile_img" *ngIf="!UserDetail">
+          <ion-img src="../../assets/images/profile.jpg"></ion-img>
+        </ion-avatar>
+        <ion-avatar class="profile_img" *ngIf="UserDetail">
+          <ion-img *ngIf="UserDetail.profilePhoto" src="{{path}}{{UserDetail.profilePhoto}}"></ion-img>
+        </ion-avatar>
+      </ion-col>
+      <ion-col>
+        <span>Leave Tracking</span>
+      </ion-col>
+      <ion-col>
+        <span routerLink="/home/all-user" style="cursor: pointer">user</span>
+        <span>Notification</span>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div>
+    <ion-row>
+      <ion-col size="4">
+        <ion-button style="margin-left: -3px;" (click)="todayNotPresentUser()">Today</ion-button>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button style="margin-left: -15px;" (click)="getApprovedLeaves()">Approval</ion-button>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button (click)="getPendingLeaves()">Pending</ion-button>
+      </ion-col>
+    </ion-row>
+    <div *ngIf="todaysLeave.length">
+      <ion-row>
+        <ion-col offset="3" size="6">
+          <ion-text style="margin-left:31px;">Name</ion-text>
+          <div *ngFor="let user of todaysLeave">
+            <span style="cursor: pointer;" (click)="presentAlert(user)">{{user.userId.name}}</span>
+          </div>
+        </ion-col>
+      </ion-row>
+
+    </div>
+    <div *ngIf="todayLeavesCount == 0">
+      <span>Today all Employees are present</span>
+    </div>
+    <div *ngIf="approvedLeaves.length">
+
+      <div class="row header">
+        <div class="col">Name</div>
+        <div class="col">No. Of Days</div>
+        <div class="col">Date</div>
+      </div>
+      <div class="row" *ngFor="let leave of approvedLeaves">
+        <div class="col">{{leave.userId.name}}</div>
+        <div class="col text-center">{{leave.noOfDays}}</div>
+        <div class="col text-center">{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</div>
+      </div>
+    </div>
+
+    <div *ngIf="approvedLeavesCount == 0">
+      <span>No Approved Leaves Yet</span>
+    </div>
+    <div *ngIf="pendingLeaves.length">
+      <div class="row header">
+        <div class="col">Name</div>
+        <div class="col">No. Of Days</div>
+        <div class="col">Date</div>
+      </div>
+      <div class="row" *ngFor="let leave of pendingLeaves">
+        <div class="col">{{leave.userId.name}}</div>
+        <div class="col text-center" (click)='presentAlert(leave)' style="cursor: pointer">{{leave.noOfDays}}</div>
+        <div class="col text-center">{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</div>
+      </div>
+    </div>
+    <div *ngIf="pendingLeavesCount == 0">
+      <span>No Pending Leaves Yet</span>
+    </div>
+  </div>
+</ion-content>

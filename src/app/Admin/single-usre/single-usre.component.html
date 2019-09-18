@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>User</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div *ngIf="singleUser">
+    <ion-avatar class="profile_img" *ngIf="!singleUser.profilePhoto">
+      <ion-img src="../../assets/images/profile.jpg"></ion-img>
+    </ion-avatar>
+    <ion-avatar class="profile_img" *ngIf="singleUser.profilePhoto">
+      <ion-img src="{{path}}{{singleUser.profilePhoto}}"></ion-img>
+    </ion-avatar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="1">
+        </ion-col>
+        <ion-col size="5">
+          <ion-text color="black">Name:</ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text color="black">{{singleUser.name}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="1">
+        </ion-col>
+        <ion-col size="5">
+          <ion-text color="black">Email:</ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text color="black">{{singleUser.email}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="1">
+        </ion-col>
+        <ion-col size="5">
+          <ion-text color="black">DOB:</ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text color="black">{{singleUser.dob}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="1">
+        </ion-col>
+        <ion-col size="5">
+          <ion-text color="black">Phone:</ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text color="black">{{singleUser.phone}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="1">
+        </ion-col>
+        <ion-col size="5">
+          <ion-text color="black">Location:</ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text color="black">{{singleUser.location}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="1">
+        </ion-col>
+        <ion-col size="5">
+          <ion-text color="black">Designation:</ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text color="black">{{singleUser.designation}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="1">
+        </ion-col>
+        <ion-col size="5">
+          <ion-text color="black">Salary:</ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text color="black">{{singleUser.salary}}</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div>
+    <h3 style="text-align:center;">Leave Report</h3>
+    <div *ngIf="!userLeaves.length">
+      <p style="text-align:center;">No leaves yet...</p>
+    </div>
+    <div *ngIf="userLeaves.length">
+      <div class="row header">
+        <div class="col">Date</div>
+        <div class="col">No. Of Days</div>
+        <div class="col">Status</div>
+      </div>
+      <div class="row" *ngFor="let leave of userLeaves">
+        <div class="col text-center">{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</div>
+        <div class="col text-center" (click)='presentAlert(leave)' style="cursor: pointer">{{leave.noOfDays}}</div>
+        <div class="col">{{leave.status}}</div>
+      </div>
+    </div>
+  </div>
+</ion-content>

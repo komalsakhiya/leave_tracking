@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="UserDetail">
+    <ion-avatar class="profile_img" *ngIf="!UserDetail.profilePhoto">
+      <ion-img  src="../../assets/images/profile.jpg"></ion-img>
+    </ion-avatar>
+    <ion-avatar class="profile_img">
+      <ion-img *ngIf="UserDetail.profilePhoto" src="{{path}}{{UserDetail.profilePhoto}}"></ion-img>
+    </ion-avatar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="1">
+        </ion-col>
+        <ion-col size="5">
+          <ion-text color="black">Name:</ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text color="black">{{UserDetail.name}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="1">
+        </ion-col>
+        <ion-col size="5">
+          <ion-text color="black">Email:</ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text color="black">{{UserDetail.email}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="1">
+        </ion-col>
+        <ion-col size="5">
+          <ion-text color="black">DOB:</ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text color="black">{{UserDetail.dob}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="1">
+        </ion-col>
+        <ion-col size="5">
+          <ion-text color="black">Phone:</ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text color="black">{{UserDetail.phone}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="1">
+        </ion-col>
+        <ion-col size="5">
+          <ion-text color="black">Location:</ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text color="black">{{UserDetail.location}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="1">
+        </ion-col>
+        <ion-col size="5">
+          <ion-text color="black">Designation:</ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text color="black">{{UserDetail.designation}}</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

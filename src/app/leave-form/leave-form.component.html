@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Add Leave</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]='leaveForm'>
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div>
+            <ion-item>
+              <ion-label style="color: gray">Select Date</ion-label>
+              <ion-datetime formControlName="date" min={{curruntDate}}></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-input type="number" id="field1"  formControlName="noOfDay" placeholder="Enter Number of days" step="0.5"
+                min="0.5" id="input1" >
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-textarea rows="1" formControlName="reason" placeholder="Enter your reason here..."></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-input formControlName="extraHours" placeholder="Enter your compensate..."></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input id="field2"  formControlName="shortLeave" placeholder="Enter your Leave hours..."  id="input2"></ion-input>
+            </ion-item>
+          </div>
+          <div>
+            <ion-button type="submit" expand="block" (click)="applyLeave(leaveForm.value)"
+              [disabled]="this.leaveForm.invalid || isDisable">Add Leave</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
