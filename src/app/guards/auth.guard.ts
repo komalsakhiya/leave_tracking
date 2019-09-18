@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     // throw new Error("Method not implemented.");
     const currentUser = this._userService.currentUserValue;
-    console.log("curruntUser in auth guard===========>", currentUser)
+    // console.log("curruntUser in auth guard===========>", currentUser)
     if (currentUser) {
       // authorised so return true
       return true;
@@ -31,7 +31,7 @@ export class LoginGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     // throw new Error("Method not implemented.");
     const currentUser = this._userService.currentUserValue;
-    console.log("curruntUser in auth guard===========>", currentUser)
+    // console.log("curruntUser in auth guard===========>", currentUser)
     if (currentUser) {
       // authorised so return true
       return false;

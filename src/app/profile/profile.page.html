@@ -12,7 +12,7 @@
     <ion-avatar class="profile_img" *ngIf="!UserDetail.profilePhoto">
       <ion-img  src="../../assets/images/profile.jpg"></ion-img>
     </ion-avatar>
-    <ion-avatar class="profile_img">
+    <ion-avatar class="profile_img"  *ngIf="UserDetail.profilePhoto">
       <ion-img *ngIf="UserDetail.profilePhoto" src="{{path}}{{UserDetail.profilePhoto}}"></ion-img>
     </ion-avatar>
     <ion-grid>

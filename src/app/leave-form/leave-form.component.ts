@@ -16,7 +16,7 @@ export class LeaveFormComponent implements OnInit {
 
     this.leaveForm = new FormGroup({
       date: new FormControl('', [Validators.required]),
-      noOfDay: new FormControl(''),
+      noOfDays: new FormControl(''),
       reason: new FormControl('', [Validators.required]),
       extraHours: new FormControl(''),
       shortLeave: new FormControl('')

@@ -57,7 +57,10 @@ export class LoginComponent implements OnInit {
       console.log('res of login============>', res);
       this._toastService.presentToast(res.message);
       this.isDisable = false;
-      this.router.navigate(['home']);
+      setTimeout(() => {
+        
+        this.router.navigate(['home']);
+      }, 300);
     }, err => {
       console.log('err in login ============>', err);
       this._toastService.presentToast(err.error.message);

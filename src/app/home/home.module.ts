@@ -12,6 +12,7 @@ import { DashboardComponent } from '../Admin/dashboard/dashboard.component';
 import { AllUserComponent } from '../Admin/all-user/all-user.component';
 import { SingleUsreComponent } from '../Admin/single-usre/single-usre.component';
 import { ReportsComponent } from '../Admin/reports/reports.component';
+import { LeaveApplicationComponent } from '../Admin/leave-application/leave-application.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -56,6 +57,10 @@ import { ReportsComponent } from '../Admin/reports/reports.component';
             path: 'report',
             component: ReportsComponent
           },
+          {
+            path:'leave-application',
+            component:LeaveApplicationComponent
+          }
         ]
       }
     ])
@@ -68,7 +73,8 @@ import { ReportsComponent } from '../Admin/reports/reports.component';
     DashboardComponent,
     AllUserComponent,
     SingleUsreComponent,
-    ReportsComponent
+    ReportsComponent,
+    LeaveApplicationComponent
   ],
 })
 export class HomePageModule { }

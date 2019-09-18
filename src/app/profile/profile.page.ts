@@ -20,9 +20,8 @@ export class ProfilePage implements OnInit {
 
   getUserDetail() {
     this._userService.getUserDetail().subscribe((res: any) => {
-      console.log("user details==========>", res.data[0]);
       this.UserDetail = res.data[0];
-      console.log("data=======>",this.UserDetail);
+      console.log("===",this.UserDetail)
       this.UserDetail.dob = this.UserDetail.dob.split("T")[0];
     }, err => {
       console.log(err);

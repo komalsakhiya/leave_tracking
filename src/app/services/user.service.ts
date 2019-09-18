@@ -55,9 +55,11 @@ export class UserService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           // this.storage.set('accessToken', user.token);
           localStorage.setItem('accessToken', user.token);
+          localStorage.setItem('designation', user.designation);
           // console.log("login user token", user)
           const accessToken = localStorage.getItem('accessToken');
-          console.log("accesstoken========================>>>", accessToken)
+          const designation = localStorage.getItem('designation');
+          console.log("accesstoken========================>>>", accessToken,designation)
           this.currentUserSubject.next(user);
         }
         return user;

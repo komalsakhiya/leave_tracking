@@ -33,16 +33,16 @@ export class MyInterceptor implements HttpInterceptor {
                     this.accessToken)
             });
             //logging the updated Parameters to browser's console
-            console.log("Before making api call : ", cloned);
+            // console.log("Before making api call : ", cloned);
             return next.handle(cloned).pipe(
                 map((event: HttpResponse<any>) => {
-                    console.log("in response= with token==========>", event);
+                    // console.log("in response= with token==========>", event);
                     return event;
                 }),
                 catchError((error: HttpErrorResponse) => {
                     console.log("interceptorsssssssss error by meeeeeeeeeee", error);
                     const errorMessage = error.error;
-                    console.log("error in interceptor", errorMessage);
+                    // console.log("error in interceptor", errorMessage);
                     if (error.status === 401) {
                         localStorage.removeItem('accessToken');
                         this._toastService.presentToast(errorMessage.message);
