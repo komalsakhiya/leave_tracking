@@ -3,8 +3,9 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import {UserService} from './services/user.service';
+import { UserService } from './services/user.service';
 import { Router, Event, NavigationStart } from '@angular/router';
+import { FCM } from '@ionic-native/fcm/ngx';
 
 @Component({
   selector: 'app-root',
@@ -30,8 +31,9 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public _userService:UserService,
-    private router: Router
+    public _userService: UserService,
+    private router: Router,
+    private fcm: FCM,
   ) {
     this._userService.currentUser.subscribe(x => this.currentUser = x);
     router.events.subscribe((routerEvent: Event) => {
@@ -50,6 +52,30 @@ export class AppComponent {
       } else {
         this.router.navigate(['login']);
       }
+
+      // Notification
+      this.fcm.getToken().then(token => {
+        console.log('token======>', token);
+        localStorage.setItem('deviceToken',token);
+        console.log("in storage",localStorage.getItem('deviceToken'));
+      });
+
+      this.fcm.onTokenRefresh().subscribe(token => {
+        console.log(token);
+      });
+
+      this.fcm.onNotification().subscribe(data => {
+        console.log('data=====>', data);
+        if (data.wasTapped) {
+          console.log('Received in background');
+        } else {
+          console.log('Received in foreground');
+        }
+      });
+
+      // this.fcm.subscribeToTopic('people');
+
+      // this.fcm.unsubscribeFromTopic('marketing');
     });
   }
   checkRouterEvent(routerEvent: Event): void {

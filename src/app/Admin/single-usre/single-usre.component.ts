@@ -13,7 +13,7 @@ import { AlertController } from '@ionic/angular';
 export class SingleUsreComponent implements OnInit {
   userId;
   singleUser;
-  userLeaves:any = [];
+  userLeaves: any = [];
   path = config.baseMediaUrl;
   constructor(private route: ActivatedRoute,
     public _userService: UserService,
@@ -58,9 +58,9 @@ export class SingleUsreComponent implements OnInit {
     })
   }
 
-   /**
-   * Display leave Reason
-   */
+  /**
+  * Display leave Reason
+  */
   async presentAlert(data) {
     console.log(data);
     const alert = await this.alertController.create({
@@ -72,4 +72,40 @@ export class SingleUsreComponent implements OnInit {
     await alert.present();
   }
 
+
+  getNoOfDays(days) {
+    console.log(days);
+    if (days < 0) {
+      return 'You have no leaves..'
+    } else {
+      const noOfDays = Math.floor(days / 8)
+      console.log("Days", noOfDays);
+      const noOfhours = days % 8;
+      console.log("noOfhours", noOfhours);
+      if (!noOfDays && noOfhours) {
+        if (noOfhours > 1) {
+          return noOfhours + ' hours'
+        } else {
+          return noOfhours + ' hour'
+        }
+      } else if (noOfDays && !noOfhours) {
+        if (noOfDays > 1) {
+          return noOfDays + ' Days'
+        } else {
+          return noOfDays + ' Day'
+        }
+      } else {
+        if (noOfDays > 1 && noOfhours > 1) {
+          return noOfDays + ' Days ' + noOfhours + ' hours';
+        } else if (noOfDays == 1 && noOfhours == 1) {
+          return noOfDays + ' Day ' + noOfhours + ' hour';
+        } else if (noOfDays > 1 && noOfhours == 1) {
+          return noOfDays + ' Days ' + noOfhours + ' hour';
+        } else {
+          return noOfDays + ' Day ' + noOfhours + ' hours';
+        }
+
+      }
+    }
+  }
 }

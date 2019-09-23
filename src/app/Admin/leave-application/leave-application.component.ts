@@ -49,24 +49,61 @@ export class LeaveApplicationComponent implements OnInit {
    * Leave Approval
    * @param {String} id 
    */
-  leaveApproval(id,status) {
-    console.log(id,status);
+  leaveApproval(id, status) {
+    console.log(id, status);
     const obj = {
       leaveId: id,
       status: status
     }
     this._leavService.leaveApproval(obj).subscribe((res: any) => {
       this.getPendingLeaves();
-      if(status == 'Approved'){
+      if (status == 'Approved') {
         this._toastService.presentToast('Leave Approved');
-      } else{
+      } else {
         this._toastService.presentToast('Leave Rejected')
       }
-     
+
       console.log("res========>", res);
     }, err => {
       console.log(err);
     })
+  }
+
+
+  getNoOfDays(days) {
+    console.log(days);
+    if (days < 0) {
+      return 'You have no leaves..'
+    } else {
+      const noOfDays = Math.floor(days / 8)
+      console.log("Days", noOfDays);
+      const noOfhours = days % 8;
+      console.log("noOfhours", noOfhours);
+      if (!noOfDays && noOfhours) {
+        if (noOfhours > 1) {
+          return noOfhours + ' hours'
+        } else {
+          return noOfhours + ' hour'
+        }
+      } else if (noOfDays && !noOfhours) {
+        if (noOfDays > 1) {
+          return noOfDays + ' Days'
+        } else {
+          return noOfDays + ' Day'
+        }
+      } else {
+        if (noOfDays > 1 && noOfhours > 1) {
+          return noOfDays + ' Days ' + noOfhours + ' hours';
+        } else if (noOfDays == 1 && noOfhours == 1) {
+          return noOfDays + ' Day ' + noOfhours + ' hour';
+        } else if (noOfDays > 1 && noOfhours == 1) {
+          return noOfDays + ' Days ' + noOfhours + ' hour';
+        } else {
+          return noOfDays + ' Day ' + noOfhours + ' hours';
+        }
+
+      }
+    }
   }
 
 }

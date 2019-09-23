@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+// import { HTTP } from '@ionic-native/http/ngx';
 import { config } from '../config';
 import * as CryptoJS from 'crypto-js';
 import { map } from 'rxjs/operators';
@@ -38,7 +39,7 @@ export class UserService {
     const json = { encrypted };
     console.log("====>", json)
     console.log(config.baseApiUrl)
-    return this.http.post(config.baseApiUrl + "api/signup", json);
+    return this.http.post(config.baseApiUrl + "api/signup", json,{});
   }
 
   /**
@@ -46,7 +47,11 @@ export class UserService {
    * @param {Object} userData 
    */
   loginUser(userData) {
-    console.log('data=============>', userData)
+    console.log('data=============>', userData);
+    const deviceToken = localStorage.getItem('deviceToken');
+    console.log('token of device:',deviceToken);
+    userData['deviceToken'] = deviceToken;
+    console.log("userData:",userData);
     return this.http.post(config.baseApiUrl + "api/login", userData).
       pipe(map((user: any) => {
         console.log("login user=========>", user);
@@ -71,8 +76,12 @@ export class UserService {
    */
   logOut() {
     // this.storage.removeItem('accessToken');
-    localStorage.removeItem('accessToken');
-    this.currentUserSubject.next(null);
+    return this.http.get(config.baseApiUrl + "api/logout").pipe(
+      map(res => {
+        localStorage.removeItem('accessToken');
+        this.currentUserSubject.next(null);
+        return res;
+      }))
   }
 
   /**

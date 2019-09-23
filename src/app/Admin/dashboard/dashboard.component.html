@@ -61,7 +61,7 @@
       </div>
       <div class="row" *ngFor="let leave of approvedLeaves">
         <div class="col">{{leave.userId.name}}</div>
-        <div class="col text-center">{{leave.noOfDays}}</div>
+        <div class="col text-center">{{getNoOfDays(leave.noOfDays)}}</div>
         <div class="col text-center">{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</div>
       </div>
     </div>
@@ -77,7 +77,7 @@
       </div>
       <div class="row" *ngFor="let leave of pendingLeaves">
         <div class="col">{{leave.userId.name}}</div>
-        <div class="col text-center" (click)='presentAlert(leave)' style="cursor: pointer">{{leave.noOfDays}}</div>
+        <div class="col text-center" (click)='presentAlert(leave)' style="cursor: pointer">{{getNoOfDays(leave.noOfDays)}}</div>
         <div class="col text-center">{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</div>
       </div>
     </div>

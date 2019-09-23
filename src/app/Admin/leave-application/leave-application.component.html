@@ -11,7 +11,7 @@
     <ion-list *ngFor="let leave of PendingLeaves">
       <ion-item>
         <ion-label style="white-space: unset !important">{{leave.userId.name}}</ion-label>
-        <ion-label (click)="presentAlert(leave)">{{leave.noOfDays}}<ion-text *ngIf="leave.noOfDays ==1"> Day</ion-text><ion-text *ngIf="leave.noOfDays >1"> Days</ion-text></ion-label>
+        <ion-label (click)="presentAlert(leave)">{{getNoOfDays(leave.noOfDays)}}</ion-label>
         <ion-icon ios="ios-checkmark" md="md-checkmark" style="cursor: pointer" (click)="leaveApproval(leave._id,'Approved')"></ion-icon>
         <ion-icon ios="ios-close" md="md-close"  style="cursor: pointer" (click)="leaveApproval(leave._id,'Rejected')"></ion-icon>
       </ion-item>

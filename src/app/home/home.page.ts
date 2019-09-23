@@ -78,8 +78,11 @@ export class HomePage {
    */
   logOut() {
     console.log("log out");
-    this._userService.logOut();
-    this.router.navigate(['/login']);
+    this._userService.logOut().subscribe((res:any)=>{
+      this.router.navigate(['/login']);
+    },err=>{
+      console.log(err)
+    })
   }
 
   closeMenu(){
