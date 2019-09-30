@@ -13,6 +13,9 @@ import { AllUserComponent } from '../Admin/all-user/all-user.component';
 import { SingleUsreComponent } from '../Admin/single-usre/single-usre.component';
 import { ReportsComponent } from '../Admin/reports/reports.component';
 import { LeaveApplicationComponent } from '../Admin/leave-application/leave-application.component';
+import{ NotificationComponent} from '../Admin/notification/notification.component';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -60,6 +63,10 @@ import { LeaveApplicationComponent } from '../Admin/leave-application/leave-appl
           {
             path:'leave-application',
             component:LeaveApplicationComponent
+          },
+          {
+            path:'notification',
+            component:NotificationComponent
           }
         ]
       }
@@ -74,7 +81,11 @@ import { LeaveApplicationComponent } from '../Admin/leave-application/leave-appl
     AllUserComponent,
     SingleUsreComponent,
     ReportsComponent,
-    LeaveApplicationComponent
+    LeaveApplicationComponent,
+    NotificationComponent
   ],
+  providers:[
+    LocalNotifications
+  ]
 })
 export class HomePageModule { }

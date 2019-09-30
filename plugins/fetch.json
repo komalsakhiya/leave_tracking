@@ -1,0 +1,139 @@
+{
+  "cordova-plugin-whitelist": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-whitelist@^1.3.3"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-statusbar": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-statusbar@^2.4.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-device": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-device@^2.0.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-splashscreen": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-splashscreen@^5.0.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-ionic-webview": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ionic-webview@^4.1.1"
+    },
+    "is_top_level": true,
+    "variables": {
+      "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+    }
+  },
+  "cordova-plugin-ionic-keyboard": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ionic-keyboard@^2.1.3"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-nativestorage": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-nativestorage@^2.3.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-facebook4": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-facebook4@^5.0.0"
+    },
+    "is_top_level": true,
+    "variables": {
+      "APP_ID": "1251992288300617",
+      "APP_NAME": "ionicsocial",
+      "FACEBOOK_HYBRID_APP_EVENTS": "false",
+      "FACEBOOK_ANDROID_SDK_VERSION": "5.0.2"
+    }
+  },
+  "cordova-plugin-googleplus": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-googleplus@^8.0.0"
+    },
+    "is_top_level": true,
+    "variables": {
+      "REVERSED_CLIENT_ID": "300967011563-ar0v1mat74cu90949gt5vrf93gkq31p4.apps.googleusercontent.com",
+      "PLAY_SERVICES_VERSION": "11.8.0"
+    }
+  },
+  "cordova-plugin-datepicker": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-datepicker@^0.9.3"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-fcm-with-dependecy-updated": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-fcm-with-dependecy-updated@^3.2.0"
+    },
+    "is_top_level": true,
+    "variables": {
+      "FCM_CORE_VERSION": "16.0.9",
+      "FCM_VERSION": "18.0.0",
+      "GRADLE_TOOLS_VERSION": "3.5.0",
+      "GOOGLE_SERVICES_VERSION": "4.2.0"
+    }
+  },
+  "cordova-plugin-advanced-http": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-advanced-http@^2.1.1"
+    },
+    "is_top_level": true,
+    "variables": {
+      "OKHTTP_VERSION": "3.10.0"
+    }
+  },
+  "cordova-plugin-file": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-file@>=2.0.0"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-local-notification": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-local-notification"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-badge": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-badge@>=0.8.5"
+    },
+    "is_top_level": false,
+    "variables": {}
+  }
+}

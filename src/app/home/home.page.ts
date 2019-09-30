@@ -6,7 +6,9 @@ import { Storage } from '@ionic/storage';
 import { Router, Event, NavigationStart, RouterEvent } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { config } from '../config';
-
+import { FCM } from '@ionic-native/fcm/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +17,7 @@ import { config } from '../config';
 })
 export class HomePage {
   currentUser: any;
-  currentUserRole = localStorage.getItem('designation');
-  // console.log("this.curruntUserRole====>",this.currentUserRole);
+  currentUserRole = JSON.parse(localStorage.getItem('designation'));
   selectedPath = '';
   developerPages: any = [];
   adminpages: any = [];
@@ -27,7 +28,10 @@ export class HomePage {
     public router: Router,
     public _userService: UserService,
     private menu: MenuController,
-    public plt: Platform
+    public plt: Platform,
+    private fcm: FCM,
+    public _toastService: ToastService,
+    private localNotifications: LocalNotifications
   ) {
     this._userService.currentUser.subscribe(x => this.currentUser = x);
     console.log("this.curruntUserRole====>", this.currentUserRole);
@@ -69,23 +73,36 @@ export class HomePage {
         this.selectedPath = event.url;
       }
     });
-    
-  }
 
-  
+  }
+  // ionViewWillEnter() {
+  //   if(this.currentUserRole == 'Admin'){
+  //     this.fcm.onNotification().subscribe(data => {
+  //       this.router.navigate(['/home/leave-application'])
+  //       if (data.wasTapped) {
+  //         console.log(data);
+  //       } else {
+  //       }
+  //     });
+  //   }
+  // }
+
+
   /**
    * Logout user
    */
   logOut() {
     console.log("log out");
-    this._userService.logOut().subscribe((res:any)=>{
+    this._userService.logOut().subscribe((res: any) => {
+      console.log("data of login yser ", res);
+      localStorage.clear();
       this.router.navigate(['/login']);
-    },err=>{
+    }, err => {
       console.log(err)
     })
   }
 
-  closeMenu(){
+  closeMenu() {
     this.menu.close()
   }
   /**
@@ -93,11 +110,12 @@ export class HomePage {
    */
   getUserDetail() {
     this._userService.getUserDetail().subscribe((res: any) => {
-      this.UserDetail = res.data[0];
+      this.UserDetail = res.data;
       console.log("===", this.UserDetail)
 
     }, err => {
       console.log(err);
     })
   }
+
 }

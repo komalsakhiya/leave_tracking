@@ -13,8 +13,8 @@
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div>
             <ion-item>
-              <ion-label style="color: gray">Select Date</ion-label>
-              <ion-datetime formControlName="date" min={{curruntDate}}></ion-datetime>
+              <!-- <ion-label style="color: gray">Select Date</ion-label> -->
+              <ion-datetime formControlName="date" placeholder="Select Date" min={{curruntDate}}></ion-datetime>
             </ion-item>
             <ion-item>
               <ion-input type="number" id="field1"  formControlName="noOfDays" placeholder="Enter Number of days" step="0.5"
@@ -25,10 +25,10 @@
               <ion-textarea rows="1" formControlName="reason" placeholder="Enter your reason here..."></ion-textarea>
             </ion-item>
             <ion-item>
-              <ion-input formControlName="extraHours" placeholder="Enter your compensate..."></ion-input>
+              <ion-input formControlName="extraHours"  placeholder="Enter your compensate..."></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input id="field2"  formControlName="shortLeave" placeholder="Enter your Leave hours..."  id="input2"></ion-input>
+              <ion-input  formControlName="shortLeave"  type="number" (keyup)="updateList($event.target.value)" placeholder="Enter your Leave hours..."  id="input2" min="0" ></ion-input>
             </ion-item>
           </div>
           <div>

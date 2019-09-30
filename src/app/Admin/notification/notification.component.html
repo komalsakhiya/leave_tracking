@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Notifications</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-card class="card" *ngFor="let item of notificationDetails">
+  <ion-card-content >
+    {{item.body}}
+    {{item.createdAt | date}}
+    {{item.createdTime}}
+  </ion-card-content>
+</ion-card>
+<div *ngIf="!notificationDetails">
+<p>Sorry You have no new notifications</p>
+</div>
+</ion-content>

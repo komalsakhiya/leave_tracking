@@ -25,7 +25,7 @@
       </div>
       <div class="row" *ngFor="let leave of monthlyLeaveOfUser">
         <div class="col text-center">{{leave.date.date}}/{{leave.date.month}}/{{leave.date.year}}</div>
-        <div class="col text-center">{{leave.noOfDays}}</div>
+        <div class="col text-center">{{getNoOfDays(leave.noOfDays)}}</div>
         <div class="col">{{leave.status}}</div>
       </div>
     </div>

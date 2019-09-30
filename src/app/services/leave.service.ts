@@ -13,7 +13,7 @@ export class LeaveService {
    * @param {Object} data 
    */
   applyLeave(data) {
-    console.log(data);
+    console.log("leave application form details ",data);
     return this.http.post(config.baseApiUrl + "api/leave/add-leave", data);
   }
   /**

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LeaveService } from '../../services/leave.service';
 import { ToastService } from '../../services/toast.service';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-leave-application',
@@ -12,7 +13,7 @@ export class LeaveApplicationComponent implements OnInit {
   pendingLeavesCount;
   constructor(public _leavService: LeaveService,
     public alertController: AlertController,
-    public _toastService: ToastService) { }
+    public _toastService: ToastService, private localNotifications: LocalNotifications) { }
 
   ngOnInit() {
     this.getPendingLeaves();
@@ -36,12 +37,17 @@ export class LeaveApplicationComponent implements OnInit {
   */
   async presentAlert(data) {
     console.log(data);
+   let date = data.date
+   let extrahours = data.extraHours;
+   console.log(extrahours)
+   let finalDate = date.date +'/' + date.month +'/' + date.year;
+   console.log(finalDate);
+   console.log(date)
     const alert = await this.alertController.create({
-      header: 'Reason',
-      message: 'Due to ' + data.reason,
-      buttons: ['OK']
-    });
-
+      message: '<b>' + 'Reason :'+ '</b>'+' '+data.reason +'<br>'+ '<b>' +'Date :'+ '</b>' + ' ' + finalDate + '<br>',
+      buttons: ['OK'],
+      cssClass: 'alertCustomCss'
+    }); 
     await alert.present();
   }
 
@@ -56,14 +62,13 @@ export class LeaveApplicationComponent implements OnInit {
       status: status
     }
     this._leavService.leaveApproval(obj).subscribe((res: any) => {
-      this.getPendingLeaves();
+      console.log("res========>", res);
       if (status == 'Approved') {
         this._toastService.presentToast('Leave Approved');
       } else {
         this._toastService.presentToast('Leave Rejected')
       }
-
-      console.log("res========>", res);
+      this.getPendingLeaves();
     }, err => {
       console.log(err);
     })
@@ -71,14 +76,14 @@ export class LeaveApplicationComponent implements OnInit {
 
 
   getNoOfDays(days) {
-    console.log(days);
+    // console.log(days);
     if (days < 0) {
       return 'You have no leaves..'
     } else {
       const noOfDays = Math.floor(days / 8)
-      console.log("Days", noOfDays);
+      // console.log("Days", noOfDays);
       const noOfhours = days % 8;
-      console.log("noOfhours", noOfhours);
+      // console.log("noOfhours", noOfhours);
       if (!noOfDays && noOfhours) {
         if (noOfhours > 1) {
           return noOfhours + ' hours'

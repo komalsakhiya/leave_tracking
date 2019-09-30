@@ -3,6 +3,9 @@ import { UserService } from '../../services/user.service';
 import { LeaveService } from '../../services/leave.service';
 import { config } from '../../config';
 import { AlertController } from '@ionic/angular';
+// import { $ } from 'protractor';
+declare var $: any;
+
 
 
 @Component({
@@ -34,10 +37,10 @@ export class DashboardComponent implements OnInit {
    */
   getUserDetail() {
     this._userService.getUserDetail().subscribe((res: any) => {
-      console.log("user details==========>", res.data[0]);
+      console.log("user details==========>", res.data);
       this.UserDetail = res.data[0];
       console.log("data=======>", this.UserDetail);
-      this.UserDetail.dob = this.UserDetail.dob.split("T")[0];
+      // this.UserDetail.dob = this.UserDetail.dob.split("T")[0];
     }, err => {
       console.log(err);
     })
@@ -49,6 +52,10 @@ export class DashboardComponent implements OnInit {
   todayNotPresentUser() {
     console.log("today not present user")
     this._leaveService.todayNotPresentUser().subscribe((res: any) => {
+      console.log("not present user", res)
+      $('.step_one').css({ 'display': 'block' });
+      $('.step_two').css({'display': 'none'})
+      $('.step_three').css({'display': 'none'})
       this.todaysLeave = res.data;
       this.todayLeavesCount = res.data.length;
       console.log("not present user=======>", res, this.todaysLeave, this.todayLeavesCount);
@@ -65,6 +72,10 @@ export class DashboardComponent implements OnInit {
     this._leaveService.getApprovedLeaves().subscribe((res: any) => {
       this.approvedLeaves = res.data;
       this.approvedLeavesCount = res.data.length;
+      $('.step_two').css({ 'display': 'block' });
+      $('.step_one').css({'display': 'none'});
+      $('.step_three').css({'display': 'none'})
+      // $('.step_one').css({ 'display': 'none' });
       console.log("approved leaves", res, this.approvedLeaves, this.approvedLeavesCount);
     }, err => {
       console.log("err");
@@ -77,6 +88,10 @@ export class DashboardComponent implements OnInit {
   getPendingLeaves() {
     console.log("Pending leaves");
     this._leaveService.getPendingLeaves().subscribe((res: any) => {
+
+      $('.step_two').css({ 'display': 'none' });
+      $('.step_one').css({'display': 'none'});
+      $('.step_three').css({'display': 'block'})
       this.pendingLeaves = res.data;
       this.pendingLeavesCount = res.data.length;
       console.log("Pending leaves", res, this.pendingLeaves, this.pendingLeavesCount);
@@ -89,6 +104,8 @@ export class DashboardComponent implements OnInit {
    */
   async presentAlert(data) {
     console.log(data);
+   let date = data.date
+   let finalDate = date.year+'/' + date.month +'/' + date.date;
     const alert = await this.alertController.create({
       header: 'Reason',
       message: 'Due to ' + data.reason,
@@ -100,14 +117,14 @@ export class DashboardComponent implements OnInit {
 
 
   getNoOfDays(days) {
-    console.log(days);
+    // console.log(days);
     if (days < 0) {
       return 'You have no leaves..'
     } else {
       const noOfDays = Math.floor(days / 8)
-      console.log("Days", noOfDays);
+      // console.log("Days", noOfDays);
       const noOfhours = days % 8;
-      console.log("noOfhours", noOfhours);
+      // console.log("noOfhours", noOfhours);
       if (!noOfDays && noOfhours) {
         if (noOfhours > 1) {
           return noOfhours + ' hours'

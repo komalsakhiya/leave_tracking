@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { tap, map, catchError } from "rxjs/operators";
-import {ToastService} from './services/toast.service';
+import { ToastService } from './services/toast.service';
 import {
     HttpRequest,
     HttpHandler,
@@ -15,28 +15,31 @@ import * as CryptoJS from 'crypto-js';
 
 @Injectable()
 export class MyInterceptor implements HttpInterceptor {
-    accessToken;
     key = "tripion@raoinfor";
-    constructor(public route: Router,public _toastService:ToastService) {
-        this.accessToken = localStorage.getItem('accessToken')
+
+    constructor(public route: Router, public _toastService: ToastService) {
+        // this.accessToken = localStorage.getItem('accessToken')
+        // console.log("login user token", this.accessToken);
     }
+    // accessToken = JSON.parse(localStorage.getItem('accessToken'));
     //function which will be called for all http calls
     intercept(
         request: HttpRequest<any>,
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
-        console.log("token=================>", this.accessToken)
+        const accessToken = JSON.parse(localStorage.getItem('accessToken'));
+        console.log("token=================>", accessToken)
         //how to update the request Parameters
-        if (this.accessToken) {
+        if (accessToken) {
             const cloned = request.clone({
                 headers: request.headers.set("token",
-                    this.accessToken)
+                    accessToken)
             });
             //logging the updated Parameters to browser's console
             // console.log("Before making api call : ", cloned);
             return next.handle(cloned).pipe(
                 map((event: HttpResponse<any>) => {
-                    // console.log("in response= with token==========>", event);
+                    console.log("in response= with token==========>", event);
                     return event;
                 }),
                 catchError((error: HttpErrorResponse) => {

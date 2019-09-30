@@ -36,7 +36,7 @@ export class SingleUsreComponent implements OnInit {
   getUserById(userId) {
     console.log("userId===========>", userId);
     this._userService.getUserById(userId).subscribe((res: any) => {
-      this.singleUser = res.data[0];
+      this.singleUser = res.data;
       this.singleUser.dob = this.singleUser.dob.split("T")[0];
       console.log("res of single user=========>", res, this.singleUser);
     }, err => {
@@ -63,25 +63,27 @@ export class SingleUsreComponent implements OnInit {
   */
   async presentAlert(data) {
     console.log(data);
-    const alert = await this.alertController.create({
-      header: 'Reason',
-      message: 'Due to ' + data.reason,
-      buttons: ['OK']
-    });
+   let date = data.date
+   let finalDate = date.date +'/' + date.month +'/' +date.year ;
+   const alert = await this.alertController.create({
+    message: '<b>' + 'Reason :'+ '</b>'+' '+data.reason +'<br>'+ '<b>' +'Date :'+ '</b>' + ' ' + finalDate + '<br>',
+    buttons: ['OK'],
+    cssClass: 'alertCustomCss'
+  }); 
 
     await alert.present();
   }
 
 
   getNoOfDays(days) {
-    console.log(days);
+    // console.log(days);
     if (days < 0) {
       return 'You have no leaves..'
     } else {
       const noOfDays = Math.floor(days / 8)
-      console.log("Days", noOfDays);
+      // console.log("Days", noOfDays);
       const noOfhours = days % 8;
-      console.log("noOfhours", noOfhours);
+      // console.log("noOfhours", noOfhours);
       if (!noOfDays && noOfhours) {
         if (noOfhours > 1) {
           return noOfhours + ' hours'

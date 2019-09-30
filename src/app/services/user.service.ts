@@ -52,19 +52,20 @@ export class UserService {
     console.log('token of device:',deviceToken);
     userData['deviceToken'] = deviceToken;
     console.log("userData:",userData);
-    return this.http.post(config.baseApiUrl + "api/login", userData).
-      pipe(map((user: any) => {
+    return this.http.post(config.baseApiUrl + "api/login", userData).pipe(map((user: any) => {
         console.log("login user=========>", user);
         // login successful if there's a jwt token in the response
         if (user && user.token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           // this.storage.set('accessToken', user.token);
-          localStorage.setItem('accessToken', user.token);
-          localStorage.setItem('designation', user.designation);
+          // localStorage.setItem('accessToken', user.token);
+          // localStorage.setItem('designation', user.designation);
           // console.log("login user token", user)
-          const accessToken = localStorage.getItem('accessToken');
-          const designation = localStorage.getItem('designation');
-          console.log("accesstoken========================>>>", accessToken,designation)
+          localStorage.setItem('accessToken', JSON.stringify(user.token));
+          localStorage.setItem('designation', JSON.stringify(user.designation));
+          // const accessToken = localStorage.getItem('accessToken');
+          // const designation = localStorage.getItem('designation');
+          // console.log("accesstoken========================>>>", accessToken,designation)
           this.currentUserSubject.next(user);
         }
         return user;
@@ -78,7 +79,8 @@ export class UserService {
     // this.storage.removeItem('accessToken');
     return this.http.get(config.baseApiUrl + "api/logout").pipe(
       map(res => {
-        localStorage.removeItem('accessToken');
+        // localStorage.removeItem('accessToken');
+        localStorage.clear();
         this.currentUserSubject.next(null);
         return res;
       }))
@@ -105,5 +107,9 @@ export class UserService {
   getUserById(userId) {
     console.log(userId);
     return this.http.get(config.baseApiUrl + "api/get-user-by-id/" + userId);
+  }
+
+  getNotification(){
+    return this.http.get(config.baseApiUrl + "api/get-all-notification");
   }
 }

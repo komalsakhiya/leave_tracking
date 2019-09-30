@@ -9,7 +9,7 @@
 <ion-content>
   <div *ngIf="PendingLeaves.length">
     <ion-list *ngFor="let leave of PendingLeaves">
-      <ion-item>
+      <ion-item class="leaveApp">
         <ion-label style="white-space: unset !important">{{leave.userId.name}}</ion-label>
         <ion-label (click)="presentAlert(leave)">{{getNoOfDays(leave.noOfDays)}}</ion-label>
         <ion-icon ios="ios-checkmark" md="md-checkmark" style="cursor: pointer" (click)="leaveApproval(leave._id,'Approved')"></ion-icon>

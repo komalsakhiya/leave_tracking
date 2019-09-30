@@ -1,7 +1,7 @@
-const ip = 'http://192.168.1.73';
+const ip = 'https://leavetracking.raoinformationtechnology.com:9000/';
 
-const baseUrl = ip + ":3000/";
-const baseMediaUrl = ip + "/Leave Tracking/uploads/";
+const baseUrl = ip;
+const baseMediaUrl = ip + "/uploads/";
 export const config = {
     baseApiUrl: baseUrl,
     baseMediaUrl: baseMediaUrl

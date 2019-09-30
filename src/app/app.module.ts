@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { LoginGuard } from './guards/auth.guard';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -42,6 +43,7 @@ import { FCM } from '@ionic-native/fcm/ngx';
     Facebook,
     GooglePlus,
     LoginGuard,
+    LocalNotifications,
     FCM,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true },
